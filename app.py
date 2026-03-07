@@ -10,8 +10,6 @@ import pickle
 import pandas as pd
 
 
- # .\fastapi\Scripts\activate
-## cd fastapi-demo-api-main
 # uvicorn app:app --reload
 # streamlit run frontend.py
 
@@ -61,3 +59,5 @@ def predict_premium(data: UserInput):
             "class_probabilities": {}
         }
     }
+
+#
