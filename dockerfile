@@ -20,6 +20,7 @@ EXPOSE 8501
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ENABLEXSRF=false
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
 
 # Run both services simultaneously
 CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} & streamlit run frontend.py --server.port ${STREAMLIT_PORT:-8501} --server.address 0.0.0.0 & wait"]
