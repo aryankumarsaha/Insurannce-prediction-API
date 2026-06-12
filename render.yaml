@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: insurance-prediction-api
+    env: docker
+    region: oregon
+    plan: free
+    dockerfile: ./dockerfile
+    dockerfilePath: ./dockerfile
+    numInstances: 1
+    
+    # Port configuration
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: STREAMLIT_PORT
+        value: 8501
+      - key: STREAMLIT_SERVER_HEADLESS
+        value: true
+      - key: STREAMLIT_SERVER_ENABLEXSRF
+        value: false
+      - key: STREAMLIT_LOGGER_LEVEL
+        value: info
+
+    # Auto-deploy on GitHub push
+    autoDeploy: true
+
+    # Build configuration
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: ./start.sh
+
+    # Health check
+    healthCheckPath: /health
+    healthCheckInterval: 300
+    healthCheckTimeout: 30
+    maxShutdownDelay: 30

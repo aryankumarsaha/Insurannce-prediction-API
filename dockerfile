@@ -26,5 +26,10 @@ wait" > start.sh
 # Make the script executable
 RUN chmod +x start.sh
 
+# Set environment for Streamlit
+ENV STREAMLIT_SERVER_HEADLESS=true
+ENV STREAMLIT_SERVER_ENABLEXSRF=false
+ENV PYTHONUNBUFFERED=1
+
 # Run the startup script
 CMD ["./start.sh"]
