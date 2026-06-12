@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # 3. Expose ports for both services
-EXPOSE 8000
+EXPOSE 8001
 EXPOSE 8501
 
 # Set environment for Streamlit
@@ -23,4 +23,5 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
 # Run both services simultaneously
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-8000} & streamlit run frontend.py --server.port ${STREAMLIT_PORT:-8501} --server.address 0.0.0.0 & wait"]
+# Streamlit listens on the public PORT; FastAPI uses an internal port.
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port 8001 & streamlit run frontend.py --server.port ${PORT:-8501} --server.address 0.0.0.0 & wait"]
