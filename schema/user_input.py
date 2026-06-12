@@ -1,10 +1,6 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, computed_field 
 from typing import Literal, Annotated
 from config.city_tier import tier_2_cities, tier_1_cities
-import pickle
-import pandas as pd
 
 
 
@@ -50,9 +46,10 @@ class UserInput(BaseModel):
     @computed_field
     @property
     def city_tier(self) -> int:
-        if self.city in tier_1_cities:
+        normalized_city = self.city.strip().title()
+        if normalized_city in tier_1_cities:
             return 1
-        elif self.city in tier_2_cities:
+        elif normalized_city in tier_2_cities:
             return 2
         else:
             return 3

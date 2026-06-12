@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# SQLite database
+*.db
+*.sqlite3
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Python packaging
+*.egg-info/
+*.egg
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Logs
+logs/
+
+# IDE/project files
+*.idea/
+.vscode/
