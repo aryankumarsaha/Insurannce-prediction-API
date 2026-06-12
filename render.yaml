@@ -26,7 +26,6 @@ services:
 
     # Build configuration
     buildCommand: pip install --no-cache-dir -r requirements.txt
-    startCommand: ./start.sh
 
     # Health check
     healthCheckPath: /health
