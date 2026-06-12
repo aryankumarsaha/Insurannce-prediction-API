@@ -21,6 +21,17 @@
 - Find and select `aryankumarsaha/Insurannce-prediction-API`
 - Click **"Connect"**
 
+### Render (Docker) - Recommended
+
+If you've chosen the Docker environment (recommended), Render will build your image using the `Dockerfile` in the repository. Key notes:
+
+- In the Render UI select **Environment: Docker** when creating the Web Service.
+- Leave the **Start Command** blank so Render uses the Dockerfile `CMD` (or paste the inline shell command if the UI requires a value).
+- Ensure `render.yaml` is present (optional) and that `dockerfile` points to `./dockerfile`.
+
+Render will run the `CMD` in your `Dockerfile`, which in this project starts both the FastAPI and Streamlit services and reads ports from environment variables.
+
+
 ### 3. Configure Service
 The form will appear. Fill in:
 
