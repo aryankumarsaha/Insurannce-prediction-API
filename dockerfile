@@ -16,20 +16,10 @@ COPY . .
 EXPOSE 8000
 EXPOSE 8501
 
-# 4. Create the startup script to run both servers simultaneously
-# We use '0.0.0.0' so the services are accessible outside the container
-RUN echo "#!/bin/sh\n\
-uvicorn app:app --host 0.0.0.0 --port 8000 &\n\
-streamlit run frontend.py --server.port 8501 --server.address 0.0.0.0\n\
-wait" > start.sh
-
-# Make the script executable
-RUN chmod +x start.sh
-
 # Set environment for Streamlit
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ENABLEXSRF=false
 ENV PYTHONUNBUFFERED=1
 
-# Run the startup script
-CMD ["./start.sh"]
+# Run both services simultaneously
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port 8000 & streamlit run frontend.py --server.port 8501 --server.address 0.0.0.0 & wait"]
